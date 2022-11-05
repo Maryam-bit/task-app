@@ -1,10 +1,15 @@
 // crud operations
-
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+const {MongoClient, ObjectID} = require("mongodb")
 
 const connectionURL = "mongodb://127.0.0.1:27017"
 const databaseName = "task-manager"
+
+
+// learning objectID
+const id = new ObjectID();
+console.log(id)
+console.log(id.toHexString())
+
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
     if (error) {
@@ -15,7 +20,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     // insert one document
     // db.collection('users').insertOne({
-    //     name: "Maryam Noor",
+    //     name: "vvvvv",
     //     age: "18"
     // }, (error, result) => {
     //     if(error) {
