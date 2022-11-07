@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Maryam-bit/task-app#readme",
   "dependencies": {
-    "mongodb": "^4.11.0"
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.7.1",
+    "validator": "^13.7.0"
   }
 }
