@@ -19,13 +19,3 @@ test("Should convert 0 C to 32 F", () => {
   const tempInCelcius = celciusToFahrenheit(0)
   expect(tempInCelcius).toBe(32)
 })
-/* 
-Why jest?
-  - saves time
-  - Create reliable software
-  - Gives flexibility to developers
-    - Refactoring
-    - Collaborating
-    - Profiling
-  - Peace of mind
-  */
