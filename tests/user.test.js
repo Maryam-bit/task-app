@@ -1,3 +1,4 @@
+const e = require("express")
 const request = require("supertest")
 const app = require("../src/app")
 const User = require("../src/models/user")
@@ -25,6 +26,17 @@ test("Should signup a new user", async () => {
         token: user.tokens[0].token
     })
     expect(user.password).not.toBe("user123")
+})
+
+test("should not signup user with invalid name/email/password format", async () => {
+    await request(app)
+        .post("/users")
+        .send({
+            email: "invalid email format",
+            name: "abc",
+            password: "abc"
+        })
+        .expect(400)
 })
 
 test("Should login existing user", async () => {
