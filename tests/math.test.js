@@ -1,9 +1,7 @@
 const {calculateTip} = require("../src/math.js")
 test("Should caclculate total with tip", () => {
   const total = calculateTip(10, .3)
-  if(total != 13) {
-    throw new Error("total tip should be 13. Got " + total)
-  }
+  expect(total).toBe(13)
 })
 /* 
 Why jest?
