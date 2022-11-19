@@ -1,11 +1,10 @@
-test("Hello world", () => {
-
+const {calculateTip} = require("../src/math.js")
+test("Should caclculate total with tip", () => {
+  const total = calculateTip(10, .3)
+  if(total != 13) {
+    throw new Error("total tip should be 13. Got " + total)
+  }
 })
-
-test("this should fail", () => {
-    throw new Error("Failure")
-})
-
 /* 
 Why jest?
   - saves time
