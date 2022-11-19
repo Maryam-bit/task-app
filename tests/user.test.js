@@ -1,29 +1,14 @@
 const request = require("supertest")
-const jwt = require("jsonwebtoken")
-const mongoose = require("mongoose")
 const app = require("../src/app")
 const User = require("../src/models/user")
+const { setupDatabase, userOne, userOneId } = require("./fixtures/db")
 
-const userOneId = new mongoose.Types.ObjectId()
-const userOne = {
-    name: "user1",
-    email: "user1@gmail.com",
-    password: "user123",
-    tokens: [{
-        token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
-    }],
-    _id: userOneId
-}
-
-beforeEach(async () => {
-    await User.deleteMany()
-    await new User(userOne).save()
-})
+beforeEach(setupDatabase)
 
 test("Should signup a new user", async () => {
     const response = await request(app).post("/users").send({
-        name: "user2",
-        email: "user2@gmail.com",
+        name: "user",
+        email: "user@gmail.com",
         password: "user123"
     }).expect(201)
 
@@ -34,8 +19,8 @@ test("Should signup a new user", async () => {
     // assertions about the response 
     expect(response.body).toMatchObject({
         user: {
-            name: "user2",
-            email: "user2@gmail.com"
+            name: "user",
+            email: "user@gmail.com"
         },
         token: user.tokens[0].token
     })
