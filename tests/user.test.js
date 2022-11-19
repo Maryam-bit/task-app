@@ -122,3 +122,22 @@ test("Should not update invalid user fields", async () => {
         .expect(400)
 })
 
+test("Should not update unauthorized users", async () => {
+    await request(app)
+        .patch("/users/me/")
+        .send({
+            name: "Jess2"
+        })
+        .expect(401)
+})
+
+
+test("Should not update user with invalid name/email/password", async () => {
+    await request(app)
+        .patch("/users/me/")
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            email: "invalid email format"
+        })
+        .expect(400)
+})
